@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, abort
-from jinja2 import TemplateNotFound
+from flask import Blueprint, render_template
 
 site_index = Blueprint('site_index', __name__, template_folder='templates')
 
