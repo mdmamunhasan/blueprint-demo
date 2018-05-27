@@ -4,6 +4,11 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 Bootstrap(app)
 
+app.config.update(dict(
+    SECRET_KEY="powerful secretkey",
+    WTF_CSRF_SECRET_KEY="a csrf secret key"
+))
+
 from project.api.routes import api_index
 from project.site.routes import site_index
 from project.admin.routes import admin_index
