@@ -16,10 +16,17 @@
         </div>
 
         <div class="row">
-            <form method="POST" action="/">
-                {{ wtf.quick_form(form) }}
+
+            <form class="form" method="post" role="form">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_errors(form, hiddens="only") }}
+
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.password) }}
+
                 <input class="btn btn-primary" type="submit" value="Login">
             </form>
+
         </div>
 
     </div>

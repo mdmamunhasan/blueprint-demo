@@ -16,9 +16,17 @@
         </div>
 
         <div class="row">
-            <form method="POST" action="/">
-                {{ wtf.quick_form(form) }}
-                <input class="btn btn-primary" type="submit" value="Register">
+            <form class="form" method="post" role="form">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_errors(form, hiddens="only") }}
+
+                {{ wtf.form_field(form.email) }}
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.password) }}
+                {{ wtf.form_field(form.confirm) }}
+                {{ wtf.form_field(form.accept_tos) }}
+
+                <input class="btn btn-primary" type="submit" value="Login">
             </form>
         </div>
 
