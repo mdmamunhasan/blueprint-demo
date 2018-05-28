@@ -8,6 +8,15 @@ ddb = boto3.client(
     aws_access_key_id='anything',
     aws_secret_access_key='anything'
 )
-response = ddb.list_tables()
-print(response)
 
+
+def list_tables():
+    response = ddb.list_tables()
+    print(response)
+
+
+def create_table():
+    pass
+
+
+list_tables()
