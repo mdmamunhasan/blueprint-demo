@@ -1,7 +1,7 @@
 import boto3
 
 # For a Boto3 client.
-ddb = boto3.client(
+ddb = boto3.resource(
     'dynamodb',
     endpoint_url='http://localhost:8000',
     region_name='ap-southeast-1',
@@ -16,7 +16,46 @@ def list_tables():
 
 
 def create_table():
-    pass
+    table = ddb.create_table(
+        TableName='Movies',
+        KeySchema=[
+            {
+                'AttributeName': 'year',
+                'KeyType': 'HASH'  # Partition key
+            },
+            {
+                'AttributeName': 'title',
+                'KeyType': 'RANGE'  # Sort key
+            }
+        ],
+        AttributeDefinitions=[
+            {
+                'AttributeName': 'year',
+                'AttributeType': 'N'
+            },
+            {
+                'AttributeName': 'title',
+                'AttributeType': 'S'
+            },
+        ],
+        ProvisionedThroughput={
+            'ReadCapacityUnits': 10,
+            'WriteCapacityUnits': 10
+        }
+    )
+
+    print("Table status:", table.table_status)
 
 
-list_tables()
+def create_movie():
+    table = ddb.Table('Movies')
+    table.put_item(
+        Item={
+            'year': 2012,
+            'title': "2012",
+            'info': "Abstraction",
+        }
+    )
+
+
+create_movie()
