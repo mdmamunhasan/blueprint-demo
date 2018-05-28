@@ -16,7 +16,10 @@
         </div>
 
         <div class="row">
-            {{ wtf.quick_form(form) }}
+            <form method="POST" action="/">
+                {{ wtf.quick_form(form) }}
+                <input class="btn btn-primary" type="submit" value="Login">
+            </form>
         </div>
 
     </div>

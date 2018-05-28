@@ -3,7 +3,6 @@ from flask import Blueprint, render_template, redirect, url_for, flash
 site_index = Blueprint('site_index', __name__, template_folder='templates')
 
 from project.site.forms import RegistrationForm
-frp
 
 @site_index.route('/')
 def home():
