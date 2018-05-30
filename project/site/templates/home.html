@@ -1,18 +1,22 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}{{title}}{% endblock %}
+{% extends "base.html" %}
 
-{% block navbar %}
-<div class="navbar navbar-fixed-top">
-  <!-- ... -->
-</div>
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
 {% endblock %}
 
+{% block title %}{{title}}{% endblock %}
+
 {% block content %}
-    <div class="container">
+<div class="container">
 
-        <div class="row">
-            <h1>{{ title }}</h1>
-        </div>
-
+    <div class="row">
+        <h1>{{ title }}</h1>
     </div>
+
+</div>
 {% endblock %}
