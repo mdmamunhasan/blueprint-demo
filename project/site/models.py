@@ -9,7 +9,6 @@ def create_user(username, password, email):
         response = table.put_item(
             Item={
                 'email': email,
-                'username': username,
                 'password': password
             },
             ConditionExpression="(attribute_not_exists(email))"

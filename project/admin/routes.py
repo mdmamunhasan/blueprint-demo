@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from project.admin.models import check_user
 
 admin_index = Blueprint('admin_index', __name__, template_folder='templates')
 
@@ -15,6 +16,13 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # Todo database and session management
+        email = request.form['email']
+        password = request.form['password']
+
         flash('Thanks for registering')
-        return redirect(url_for('admin_index.dashboard'))
+        if check_user(email, password):
+            flash('Thanks for registering')
+            session['email'] = request.form['email']
+            return redirect(url_for('admin_index.dashboard'))
+
     return render_template('login.html', title="Login", form=form)
