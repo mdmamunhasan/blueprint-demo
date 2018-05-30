@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, g
 
-site_index = Blueprint('site_index', __name__, template_folder='templates', static_folder='static',
-                       static_url_path='/site')
+site_index = Blueprint('site_index', __name__, template_folder='templates')
 
 from project.site.models import create_user
 from project.site.forms import RegistrationForm
