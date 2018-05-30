@@ -2,7 +2,7 @@ from project.models import dynamodb
 from botocore.exceptions import ClientError
 
 
-def create_user(username, password, email):
+def create_user(email, password):
     table = dynamodb.Table('auth_users')
 
     try:

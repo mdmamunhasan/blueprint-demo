@@ -8,14 +8,16 @@ from project.admin.forms import LoginForm
 
 @admin_index.route('/')
 def dashboard():
+    if 'email' not in session:
+        return redirect(url_for('admin_index.login'))
     return render_template('dashboard.html', title="Dashboard")
 
 
 @admin_index.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
     if form.validate_on_submit():
-        # Todo database and session management
         email = request.form['email']
         password = request.form['password']
 
@@ -25,4 +27,13 @@ def login():
             session['email'] = request.form['email']
             return redirect(url_for('admin_index.dashboard'))
 
-    return render_template('login.html', title="Login", form=form)
+    if 'email' in session:
+        return redirect(url_for('admin_index.dashboard'))
+    else:
+        return render_template('login.html', title="Login", form=form)
+
+
+@admin_index.route('/logout', methods=['GET'])
+def logout():
+    session.pop('email', None)
+    return redirect(url_for('admin_index.login'))
